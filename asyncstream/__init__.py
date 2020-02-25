@@ -8,6 +8,7 @@ from asyncstream.async_file_obj import AsyncFileObj
 from asyncstream.async_reader import AsyncReader
 from asyncstream.async_writer import AsyncWriter
 
+
 def open(afd: Union[str, AsyncBufferedIOBase], mode=None, encoding=None, compression=None, compress_level=-1):
     if encoding is None and compression is None:
         from asyncstream.codecs.none_codec import NoneDecompressor, NoneCompressor
@@ -48,6 +49,6 @@ def reader(afd: AsyncFileObj, has_header: bool = True, columns: Optional[Iterabl
     return AsyncReader(afd, columns, column_types, has_header, sep, eol)
 
 
-def writer(afd: AsyncFileObj, has_header: bool = True, columns: Optional[Iterable[str]] = None,
-           column_types: Optional[Iterable[str]] = None):
-    return AsyncWriter(afd, has_header=has_header)
+def writerwriter(afd: AsyncFileObj, columns: Optional[Iterable[str]] = None,
+                 column_types: Optional[Iterable[str]] = None, has_header: bool = True, sep=',', eol='\n'):
+    return AsyncWriter(afd, columns=columns, column_types=column_types, has_header=has_header, sep=sep, eol=eol)

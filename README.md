@@ -74,7 +74,7 @@ import asyncio
 async def run():
     session = aiobotocore.get_session()
     async with session.create_client('s3') as s3:
-        obj = await s3.get_object(Bucket='test-bucket', Key='path/to/file.gz')
+        obj = await s3.get_object(Bucket='test-bucket', Key='path/to/file.bz2')
         async with asyncstream.open(obj['Body'], 'rt', compression='bzip2') as fd:
             async for line in fd:
                 print(line)
@@ -207,7 +207,7 @@ The `AsyncFileObj` object returned has the following methods:
 
 #### afd: AsyncFileObj, columns=Optional[Iterable[str]], column_types=Optional[Iterable[str]], has_header=False, sep=',', eol='\n')
 
-Open an async reader using AsyncFileObj returned by the `asyncstream.open` method. It must be open in text mode (`t`).
+Create an async reader using AsyncFileObj returned by the `asyncstream.open` method. It must be open in text mode (`t`).
 
 Inputs:
 
@@ -218,8 +218,18 @@ Inputs:
 * `sep`: separator between values
 * `eol`: end of line character 
 
-#### writer(afd: AsyncFileObj, has_header: bool = True, columns: Optional[Iterable[str]] = None, column_types: Optional[Iterable[str]] = None):
+#### writer(afd: AsyncFileObj, columns: Optional[Iterable[str]] = None, column_types: Optional[Iterable[str]] = None, has_header: bool = True, sep=',', eol='\n')
 
+Create an async writer using AsyncFileObj returned by the `asyncstream.open` method. It must be open in text mode (`t`).
+
+Inputs:
+
+* `afd`: AsyncFileObj created with `asyncstream.open` in text mode `t` and write `w`
+* `columns`: optional list of column names to use. If it is not set and has_header is true, then it will use the first row as the column names
+* `column_types`: optional list of column types (by default it will consider all the columns to be `string`)
+* `has_header`: the file has the first line set as header
+* `sep`: separator between values
+* `eol`: end of line character 
 
 
 ## Compression supported

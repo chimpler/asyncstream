@@ -1,14 +1,3 @@
-# import csv
-# import os
-# import tempfile
-#
-# import aiofiles
-# import pytest
-#
-# import asyncstream
-# from tests import test_utils
-# from tests.test_utils import decode_parquet, decode_orc
-#
 import os
 from tempfile import NamedTemporaryFile
 
