@@ -1,0 +1,6 @@
+name,color,age
+dog,brown,15
+cat,white,12
+horse,black,5
+monkey,brown,10
+turtle,green,15
