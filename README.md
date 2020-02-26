@@ -1,4 +1,4 @@
-async-stream
+asyncstream
 ============
 
 ```
@@ -205,7 +205,7 @@ The `AsyncFileObj` object returned has the following methods:
 * `flush()`: used when open in write mode
 * `close()`: close file descriptor and release resources. It is done automatically when the `async with` block is exited 
 
-#### afd: AsyncFileObj, columns=Optional[Iterable[str]], column_types=Optional[Iterable[str]], has_header=False, sep=',', eol='\n')
+#### asyncstream.reader(afd: AsyncFileObj, columns=Optional[Iterable[str]], column_types=Optional[Iterable[str]], has_header=False, sep=',', eol='\n')
 
 Create an async reader using AsyncFileObj returned by the `asyncstream.open` method. It must be open in text mode (`t`).
 
@@ -218,7 +218,7 @@ Inputs:
 * `sep`: separator between values
 * `eol`: end of line character 
 
-#### writer(afd: AsyncFileObj, columns: Optional[Iterable[str]] = None, column_types: Optional[Iterable[str]] = None, has_header: bool = True, sep=',', eol='\n')
+#### asyncstream.writer(afd: AsyncFileObj, columns: Optional[Iterable[str]] = None, column_types: Optional[Iterable[str]] = None, has_header: bool = True, sep=',', eol='\n')
 
 Create an async writer using AsyncFileObj returned by the `asyncstream.open` method. It must be open in text mode (`t`).
 
